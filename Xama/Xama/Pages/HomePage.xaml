@@ -2,7 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Xama.Pages.HomePage">
-  <Entry Placeholder="Login" x:Name="login"></Entry>
-  <Entry IsPassword="true" x:Name="password"></Entry>
-  <Button Text="Log In" Clicked="Login"></Button>
+  <StackLayout VerticalOptions="Center"
+               Orientation="Vertical"
+               Padding="50">
+    <Entry Placeholder="Login"
+           x:Name="LoginEnty"
+           TextColor="Black"/>
+    
+    <Entry IsPassword="true" 
+           x:Name="PasswordEntry"
+           TextColor="Black"/>
+    
+    <Button Text="Log In" Clicked="Login"></Button>
+  </StackLayout>
 </ContentPage>

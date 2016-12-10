@@ -5,7 +5,8 @@
 
   <ContentPage.ToolbarItems>
     <ToolbarItem Text="add"
-                 Clicked="Add"/>
+                 Clicked="Add"
+                 Icon="add.png"/>
   </ContentPage.ToolbarItems>
   
 </ContentPage>
