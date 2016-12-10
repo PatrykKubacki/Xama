@@ -18,6 +18,7 @@ namespace Xama.Entitis {
 		public string Category { get; set; }
 		public string Comment { get; set; }
 		public bool Done { get; set; }
+		public int UserId { get; set; }
 
 		public override string ToString() {
 			return $"{Title}-{Done}";
