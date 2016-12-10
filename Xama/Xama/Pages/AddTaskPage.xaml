@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+			xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			x:Class="Xama.Pages.AddTaskPage"
+			Title="Dodaj nowe zadanie">
+
+	<StackLayout Orientation="Vertical"
+				VerticalOptions="Start"
+				Padding="20,20">
+
+		<Entry Text="{Binding Item.Title, Mode=TwoWay}"
+				TextColor="Black"
+				Placeholder="Tytuł"/>
+
+		<Entry Text="{Binding Item.Priority, Mode=TwoWay}"
+				TextColor="Black"
+				Placeholder="Priorytet"/>
+
+
+		<Label TextColor="Black"
+				Text="Data wykonania:"/>
+
+		<DatePicker Date="{Binding Item.DeadLine,
+                Mode=TwoWay}"/>
+
+		<Entry Text="{Binding Item.Category, Mode=TwoWay}"
+				TextColor="Black"
+				Placeholder="Kategoria"/>
+
+		<Entry Text="{Binding Item.Comment, Mode=TwoWay}"
+				TextColor="Black"
+				Placeholder="Komentarz"/>
+
+			<Label TextColor="Black"
+					Text="Zrobione?"
+					/>
+
+			<Switch IsToggled="{Binding Item.Done, 
+            Mode=TwoWay}"
+              />
+			
+    <Grid>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+      
+      <Button Text="Zapisz zadanie"
+              Command="{Binding SaveCommand}"
+              Grid.Column="0"/>
+      
+      <Button Text="Anuluj zadanie"
+              Clicked="CancelCommand"
+              Grid.Column="1"/>
+    </Grid>
+		
+	</StackLayout>
+</ContentPage>
