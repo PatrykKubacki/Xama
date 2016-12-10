@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Xama.Entitis {
 
-	class Task {
+	class TaskItem {
 
 		public int Id { get; set; }
 
