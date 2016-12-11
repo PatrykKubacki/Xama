@@ -1,36 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using Xama.Entitis;
+using System.Linq;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Xama.Models;
 using Xamarin.Forms;
 
 namespace Xama.Pages {
 
 	public partial class TasksReview : ContentPage {
-		public List<TaskItem> Tasks { get; set; }
+		private IList<TaskItem> _taskItems = new List<TaskItem>();
 
 		public TasksReview() {
 			InitializeComponent();
-			Tasks = new List<TaskItem> {
-				new TaskItem { Title = "Wynieś smieci",
-							   Done = false,
-							   DeadLine = DateTime.Now,
-							   Category = "Dzisiejsze",
-							   Id = 1,
-							   UserId = 1,
-							   Comment = "Goła baba",
-							   Priority = "Wysoki"
-				},
-					new TaskItem { Title = "Zrób zakupy",
-							   Done = false,
-							   DeadLine = DateTime.Now,
-							   Category = "Dzisiejsze",
-							   Id = 1,
-							   UserId = 1,
-							   Comment = "Jajka i chleb",
-							   Priority = "Wysoki"
-				}
-			};
-			TasksListView.ItemsSource = Tasks;
+			//await GetSomethingFromApi();
+		}
+
+		protected override async void OnAppearing() {
+			base.OnAppearing();
+			await GetSomethingFromApi();
+			TasksListView.ItemsSource = _taskItems;
+		}
+
+		private async Task GetSomethingFromApi() {
+			using (var client = new HttpClient()) {
+				var response = await client.GetStringAsync("http://serwertodo.azurewebsites.net/api/Value2");
+				_taskItems = JsonConvert.DeserializeObject<IEnumerable<TaskItem>>(response).ToList();
+			}
 		}
 
 		private async void Add(object sender, EventArgs e) {
